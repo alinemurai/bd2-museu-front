@@ -1,0 +1,70 @@
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Listagem de Objetos" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <div class="d-flex justify-content-end mb-4">
+    </div>
+    <sb-card>
+        <div class="card-body">
+            <form>
+                <div class="form-group form-inline">
+                    
+                    <!-- <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="countryService.searchTerm" /> -->
+                    <!-- <span class="ml-3" *ngIf="countryService.loading$ | async">Loading...</span> -->
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 9%; text-align: center;">Id</th>
+                            <th style="width: 9%; text-align: center;">Nome</th>
+                            <th style="width: 9%; text-align: center;">Período</th>
+                            <th style="width: 9%; text-align: center;">Ano</th>
+                            <th style="width: 9%; text-align: center;">Título</th>
+                            <th style="width: 9%; text-align: center;">Descrição</th>
+                            <th style="width: 9%; text-align: center;">Cultura</th>
+                            <th style="width: 9%; text-align: center;">Estilo</th>
+                            <th style="width: 9%; text-align: center;">Custo</th>
+                            <th style="width: 9%; text-align: center;">Tipo</th>
+                        </tr>
+                    </thead>
+                <!--    <tbody>
+                        <tr *ngFor="let toy of toys$  | async">
+                            <td style='text-align: center;'>{{ toy.id }}</td>
+                            <td style='text-align: center;'>{{ toy.nome }}</td>
+                            <td style='text-align: center;'>{{ toy.capacidade }}</td>
+                            <td style='text-align: center;'>{{ toy.numoperadores }}</td>
+                            <td style='text-align: center;'>{{ toy.ativo ? 'Ativo' : 'Inativo' }}</td>
+                            <td style='text-align: center;'>{{ toy.idparque }}</td>
+                            <td style='text-align: center;'>{{ toy.tipo_brinquedo }}</td>
+                            <td style='text-align: center;'>{{ toy.precojogada }}</td>
+                            <td style='text-align: center;'>{{ toy.alturaminima }}</td>
+                            <td style='text-align: center;'>{{ toy.alturamaxima }}</td>
+                            <td style='text-align: center;'>{{ toy.precoentrada }}</td>
+                            <td style="white-space: nowrap; text-align: center;">
+                                <a routerLink="atualizar/{{toy.id}}" class="btn btn-sm btn-primary mr-1">Atualizar</a>
+                                <button (click)="deleteToy(toy.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="toy.isDeleting">
+                                    <span *ngIf="toy.isDeleting" class="spinner-border spinner-border-sm"></span>
+                                    <span *ngIf="!toy.isDeleting">Excluir</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="!toys$">
+                            <td colspan="4" class="text-center">
+                                <span class="spinner-border spinner-border-lg align-center"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                -->
+                </table>
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination
+                        [collectionSize]="total$ | async" [(page)]="page" [pageSize]="pageSize">
+                    </ngb-pagination>
+                    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="pageSize">
+                        <option [ngValue]="10">10 itens por página</option>
+                        <option [ngValue]="20">20 itens por página</option>
+                        <option [ngValue]="30">30 itens por página</option>
+                  </select>
+                </div>
+            </form>
+        </div>
+    </sb-card>
+</sb-layout-dashboard>
