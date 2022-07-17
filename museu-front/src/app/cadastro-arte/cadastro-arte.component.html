@@ -1,0 +1,180 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="card form-group col-md-10 col-md-offset-5 align-center" >
+            <div class="card-body">
+                <div class="row">
+                    <h3>Cadastrar Arte</h3>
+                </div>
+                <!--Para cada input do forms, existe mensagens de validacoes caso ocorra algum erro-->
+                <form class="align-items-center" [formGroup]="cadastroForm" (ngSubmit)="cadastrarArte()">
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="titulo" class="form-label">Título da arte</label>
+                            <input type="text" class="form-control" id="titulo" required placeholder="Digite o nome do título"
+                             formControlName="titulo" 
+                             [ngClass]="{ 'is-invalid': titulo.errors && (titulo.dirty || titulo.touched)} ">
+                            <div *ngIf="titulo.errors?.required && (titulo.dirty || titulo.touched)" class="text-danger" >
+                                <p>Preencha o título da arte</p>
+                            </div>
+                            <div *ngIf="titulo.errors?.minlength && (titulo.dirty || titulo.touched)" class="text-danger">
+                                <p>Título da arte muito curto</p>
+                            </div>
+                            <div *ngIf="titulo.errors?.maxlength && (titulo.dirty || titulo.touched)" class="text-danger">
+                                <p>Título da arte muito longo</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label for="descricao" class="form-label">Descrição</label>
+                            <input type="text" class="form-control" id="descricao" required placeholder="Digite a descrição"
+                             formControlName="descricao" 
+                             [ngClass]="{ 'is-invalid': descricao.errors && (descricao.dirty || descricao.touched)} ">
+                            <div *ngIf="descricao.errors?.required && (descricao.dirty || descricao.touched)" class="text-danger" >
+                                <p>Preencha a descrição</p>
+                            </div>
+                            <div *ngIf="descricao.errors?.minlength && (descricao.dirty || descricao.touched)" class="text-danger">
+                                <p>Descrição muito curto</p>
+                            </div>
+                            <div *ngIf="descricao.errors?.maxlength && (descricao.dirty || descricao.touched)" class="text-danger">
+                                <p>Descrição muito longa</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label for="cultura" class="form-label">Cultura</label>
+                            <input type="text" class="form-control" id="cultura" required placeholder="Digite a cultura da arte"
+                             formControlName="cultura" 
+                             [ngClass]="{ 'is-invalid': cultura.errors && (cultura.dirty || cultura.touched)} ">
+                            <div *ngIf="cultura.errors?.required && (cultura.dirty || cultura.touched)" class="text-danger" >
+                                <p>Preencha a cultura</p>
+                            </div>
+                            <div *ngIf="cultura.errors?.minlength && (cultura.dirty || cultura.touched)" class="text-danger">
+                                <p>Cultura muito curto</p>
+                            </div>
+                            <div *ngIf="cultura.errors?.maxlength && (cultura.dirty || cultura.touched)" class="text-danger">
+                                <p>Cultura muito longo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="estilo" class="form-label">Estilo</label>
+                            <input type="text" class="form-control" id="estilo" required placeholder="Digite o estilo"
+                             formControlName="estilo" 
+                             [ngClass]="{ 'is-invalid': estilo.errors && (estilo.dirty || estilo.touched)} ">
+                            <div *ngIf="estilo.errors?.required && (estilo.dirty || estilo.touched)" class="text-danger" >
+                                <p>Preencha o estilo</p>
+                            </div>
+                            <div *ngIf="estilo.errors?.minlength && (estilo.dirty || estilo.touched)" class="text-danger">
+                                <p>Estilo muito curto</p>
+                            </div>
+                            <div *ngIf="estilo.errors?.maxlength && (estilo.dirty || estilo.touched)" class="text-danger">
+                                <p>Estilo muito longo</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label for="nomeArtista" class="form-label">Nome do Artista</label>
+                            <input type="text" class="form-control" id="nomeArtista" required placeholder="Digite o nome do artista"
+                             formControlName="nomeArtista" 
+                             [ngClass]="{ 'is-invalid': nomeArtista.errors && (nomeArtista.dirty || nomeArtista.touched)} ">
+                            <div *ngIf="nomeArtista.errors?.required && (nomeArtista.dirty || nomeArtista.touched)" class="text-danger" >
+                                <p>Preencha o nome do artista</p>
+                            </div>
+                            <div *ngIf="nomeArtista.errors?.minlength && (nomeArtista.dirty || nomeArtista.touched)" class="text-danger">
+                                <p>Nome do artista muito curto</p>
+                            </div>
+                            <div *ngIf="descricao.errors?.maxlength && (descricao.dirty || descricao.touched)" class="text-danger">
+                                <p>Nome do artista muito longa</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label for="tipoObjetoArte" class="form-label">Tipo de objeto arte</label>
+                            <input type="text" class="form-control" id="tipoObjetoArte" required placeholder="Digite o tipo de objeto de arte"
+                             formControlName="tipoObjetoArte" 
+                             [ngClass]="{ 'is-invalid': tipoObjetoArte.errors && (tipoObjetoArte.dirty || tipoObjetoArte.touched)} ">
+                            <div *ngIf="tipoObjetoArte.errors?.required && (tipoObjetoArte.dirty || tipoObjetoArte.touched)" class="text-danger" >
+                                <p>Preencha o tipo de objeto arte</p>
+                            </div>
+                            <div *ngIf="tipoObjetoArte.errors?.minlength && (tipoObjetoArte.dirty || tipoObjetoArte.touched)" class="text-danger">
+                                <p>Tipo de objeto arte muito curto</p>
+                            </div>
+                            <div *ngIf="tipoObjetoArte.errors?.maxlength && (tipoObjetoArte.dirty || tipoObjetoArte.touched)" class="text-danger">
+                                <p>Tipo de objeto arte muito longo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <label for="custo" class="form-label">Custo</label>
+                            <input type="text" class="form-control" id="custo" required placeholder="Digite o custo"
+                             formControlName="custo" 
+                             [ngClass]="{ 'is-invalid': custo.errors && (custo.dirty || custo.touched)}"
+                             (blur)="formatarValorFinal()">
+                            <div *ngIf="custo.errors?.required && (custo.dirty || custo.touched)" class="text-danger" >
+                                <p>Preencha o custo</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label for="ano" class="form-label">Ano</label>
+                            <input type="text" class="form-control" id="ano" required placeholder="Digite o ano"
+                             formControlName="ano" 
+                             [ngClass]="{ 'is-invalid': ano.errors && (ano.dirty || ano.touched)}"
+                             >
+                            <div *ngIf="(ano.errors?.min || ano.errors?.max) && (ano.dirty || ano.touched)" class="text-danger">
+                                <p>Ano inválido</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label for="periodo" class="form-label">Período</label>
+                            <input type="text" class="form-control" id="periodo" required placeholder="Digite o período"
+                             formControlName="periodo" 
+                             [ngClass]="{ 'is-invalid': periodo.errors && (periodo.dirty || periodo.touched)}"
+                             >
+                            <div *ngIf="periodo.errors?.required && (periodo.dirty || periodo.touched)" class="text-danger" >
+                                <p>Preencha o período</p>
+                            </div>
+                            <div *ngIf="periodo.errors?.minlength && (periodo.dirty || periodo.touched)" class="text-danger">
+                                <p>Período muito curto</p>
+                            </div>
+                            <div *ngIf="periodo.errors?.maxlength && (periodo.dirty || periodo.touched)" class="text-danger">
+                                <p>Período muito longo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group" > 
+                                <mat-radio-group aria-labelledby="example-radio-group-label" 
+                                formControlName="comprado" 
+                                class="example-radio-group" 
+                                name="comprado">
+                                <mat-radio-button class="example-radio-button" 
+                                *ngFor="let radio of radios" [value]="radio.value"
+                                (change)="changeComprado($event)">
+                                    {{ radio.name }}
+                                 </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                        <div class="col-4" *ngIf="cadastroForm.get('comprado').value == '0'">
+                            <label for="colecao" class="form-label">Coleção</label>
+                            <input type="text" class="form-control" id="colecao" required placeholder="Digite o nome da coleção"
+                             formControlName="colecao" 
+                             [ngClass]="{ 'is-invalid': colecao.errors && (colecao.dirty || colecao.touched)}">
+                            <div *ngIf="colecao.errors?.required && (colecao.dirty || colecao.touched)" class="text-danger" >
+                                <p>Preencha o nome da colecao</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-primary" type="submit" [disabled]="!cadastroForm.valid">Cadastrar</button>
+                        </div>
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
