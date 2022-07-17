@@ -6,9 +6,42 @@
                 <div class="row">
                     <div class="col-3">
                         <label class="control-label">Tipo de Arte</label>
-                        <select class="form-control" (change)="filtraTipoArte()" formControlName="tipoObjetoArte">
+                        <select class="form-control" (change)="filtrar()" formControlName="tipoObjetoArte">
                             <option [value]=""></option>
                             <option *ngFor="let tipo of tipoArteList" [value]="tipo">{{tipo}}</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="control-label">Classe</label>
+                        <select class="form-control" (change)="filtrar()" formControlName="classe">
+                            <option [value]=""></option>
+                            <option [value]="1">Comprado</option>
+                            <option [value]="0">Emprestado</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="control-label">Mês da Compra</label>
+                        <select class="form-control" (change)="filtrar()" formControlName="mes">
+                            <option [value]=""></option>
+                            <option [value]="1">Janeiro</option>
+                            <option [value]="2">Fevereiro</option>
+                            <option [value]="3">Março</option>
+                            <option [value]="4">Abril</option>
+                            <option [value]="5">Maio</option>
+                            <option [value]="6">Junho</option>
+                            <option [value]="7">Julho</option>
+                            <option [value]="8">Agosto</option>
+                            <option [value]="9">Setembro</option>
+                            <option [value]="10">Outubro</option>
+                            <option [value]="11">Novembro</option>
+                            <option [value]="12">Dezembro</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="control-label">Ano da Compra</label>
+                        <select class="form-control" (change)="filtrar()" formControlName="ano">
+                            <option [value]=""></option>
+                            <option *ngFor="let ano of anos" [value]="ano">{{ano}}</option>
                         </select>
                     </div>
                 </div>  
@@ -97,6 +130,14 @@
                     <th mat-header-cell *matHeaderCellDef>Coleção</th>
                     <td mat-cell *matCellDef="let element"> 
                         {{ element.colecao }}
+                    </td>
+                </ng-container>
+
+                <!--data compra-->
+                <ng-container matColumnDef="dataCompra">
+                    <th mat-header-cell *matHeaderCellDef>Data da Compra</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{ element.dataCompra }}
                     </td>
                 </ng-container>
         

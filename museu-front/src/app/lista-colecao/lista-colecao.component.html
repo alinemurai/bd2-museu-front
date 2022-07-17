@@ -1,0 +1,102 @@
+<div class="container main-container">
+    
+    <div class="row">
+        <div class="col-12">
+            <form [formGroup]="filtrosForm">
+                <div class="row">
+                    <div class="col-3">
+                        <label class="control-label">Mês</label>
+                        <select class="form-control" (change)="filtrar()" formControlName="mes">
+                            <option [value]=""></option>
+                            <option [value]="1">Janeiro</option>
+                            <option [value]="2">Fevereiro</option>
+                            <option [value]="3">Março</option>
+                            <option [value]="4">Abril</option>
+                            <option [value]="5">Maio</option>
+                            <option [value]="6">Junho</option>
+                            <option [value]="7">Julho</option>
+                            <option [value]="8">Agosto</option>
+                            <option [value]="9">Setembro</option>
+                            <option [value]="10">Outubro</option>
+                            <option [value]="11">Novembro</option>
+                            <option [value]="12">Dezembro</option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <label class="control-label">Ano</label>
+                        <select class="form-control" (change)="filtrar()" formControlName="ano">
+                            <option [value]=""></option>
+                            <option *ngFor="let ano of anos" [value]="ano">{{ano}}</option>
+                        </select>
+                    </div>
+                </div>  
+            </form>    
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <table mat-table [dataSource]="colecaoList" class="table mat-elevation-z8">
+        
+                <!--Nome-->
+                <ng-container matColumnDef="nome">
+                    <th mat-header-cell *matHeaderCellDef>Nome</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{ element.nome }}
+                    </td>
+                </ng-container>
+        
+                <!--qtd_emprestimos-->
+                <ng-container matColumnDef="qtd_emprestimos">
+                    <th mat-header-cell *matHeaderCellDef>Quantidade de Emprestimos</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{ element.cultura }}
+                    </td>
+                </ng-container>
+
+                <!--descricao-->
+                <ng-container matColumnDef="descricao">
+                    <th mat-header-cell *matHeaderCellDef>Descrição</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{ element.descricao }}
+                    </td>
+                </ng-container>
+                
+                <!--tipo-->
+                <ng-container matColumnDef="tipo">
+                    <th mat-header-cell *matHeaderCellDef>Tipo</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{ element.tipo }}
+                    </td>
+                </ng-container>
+        
+                <!--telefone-->
+                <ng-container matColumnDef="telefone">
+                    <th mat-header-cell *matHeaderCellDef>Telefone</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{ element.telefone }}
+                    </td>
+                </ng-container>
+        
+                <!--endereco-->
+                <ng-container matColumnDef="endereco">
+                    <th mat-header-cell *matHeaderCellDef>Endereço</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{ element.endereco }}
+                    </td>
+                </ng-container>
+        
+                <!--pessoa_contato-->
+                <ng-container matColumnDef="pessoa_contato">
+                    <th mat-header-cell *matHeaderCellDef>Pessoa Contato</th>
+                    <td mat-cell *matCellDef="let element"> 
+                        {{ element.pessoa_contato }}
+                    </td>
+                </ng-container>    
+                <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+                <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+            </table>
+        </div>
+    </div>
+    
+</div>

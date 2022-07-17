@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroArteComponent } from "./cadastro-arte/cadastro-arte.component";
-import { HomeComponent } from './home/home.component';
+import { ListaArteComponent } from './lista-arte/lista-arte.component';
+import { ListaColecaoComponent } from './lista-colecao/lista-colecao.component';
+
 
 //Aqui e configurado todas as rotas disponiveis no sistema
 export const rootRouterConfig: Routes = [
-    { path: '', component: HomeComponent},
+    { path: '', component: ListaArteComponent},
     { path: 'CadastroArte', component: CadastroArteComponent},
-    { path: 'Home', component: HomeComponent},
+    { path: 'ListaArte', component: ListaArteComponent},
+    { path: 'ListaColecao', component: ListaColecaoComponent}
 ]
 
 @NgModule({

@@ -12,4 +12,7 @@ export class Arte{
     tipoObjetoArte: string = "";
     colecao: string = "";
     comprado: number = 0;
+    dataCompra: string = "";
+    mesCompra: number = 0;
+    anoCompra: number = 0;
   }

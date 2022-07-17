@@ -144,6 +144,18 @@
                     <br>
                     <div class="row">
                         <div class="col-4">
+                            <label for="dataCompra" class="form-label">Data da Compra</label>
+                            <input type="text" class="form-control" id="dataCompra" required placeholder="Digite a data da compra"
+                             formControlName="dataCompra" 
+                             [ngClass]="{ 'is-invalid': dataCompra.errors && (dataCompra.dirty || dataCompra.touched)}">
+                            <div *ngIf="dataCompra.errors?.required && (dataCompra.dirty || dataCompra.touched)" class="text-danger" >
+                                <p>Preencha a data da compra</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4">
                             <div class="form-group" > 
                                 <mat-radio-group aria-labelledby="example-radio-group-label" 
                                 formControlName="comprado" 

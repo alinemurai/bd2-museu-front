@@ -6,9 +6,9 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './lista-arte.component.html'
 })
-export class HomeComponent implements OnInit {
+export class ListaArteComponent implements OnInit {
 
   tipoArteList: string[] = []
   public filtrosForm: any
@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
     'cultura',
     'tipoObjetoArte',
     'estilo',
-    'colecao'
+    'colecao',
+    'dataCompra',
   ];
   //Variavel utilizada para paginacao
   paginaAtual = 1
@@ -40,6 +41,9 @@ export class HomeComponent implements OnInit {
     tipoObjetoArte: 'objetoArte',
     colecao: 'colecao',
     comprado: 1,
+    dataCompra: "10/03/2021",
+    mesCompra: 3,
+    anoCompra: 2021
   },
   {numid: '2',
   nome_artista: 'nome artista',
@@ -52,7 +56,10 @@ export class HomeComponent implements OnInit {
   custo: 2,
   tipoObjetoArte: 'o2',
   colecao: 'colecao',
-  comprado: 1,
+  comprado: 0,
+  dataCompra: "10/03/2021",
+  mesCompra: 3,
+  anoCompra: 2021
 },
 {numid: '3',
   nome_artista: 'nome artista',
@@ -66,16 +73,26 @@ export class HomeComponent implements OnInit {
   tipoObjetoArte: 'o2',
   colecao: 'colecao',
   comprado: 1,
+  dataCompra: "10/03/2021",
+  mesCompra: 3,
+  anoCompra: 2021
 },]
 
-arteListFiltrado: Arte[] = []
+  arteListFiltrado: Arte[] = []
+  anos: number[] = []
   
   constructor(private routes: Router, private arteService: ArteService) { }
 
   ngOnInit(): void {
 
+    for(let i = 2022; i >=1700; i--)
+    this.anos.push(i)
+
     this.filtrosForm = new FormGroup({
-      tipoObjetoArte: new FormControl('')
+      tipoObjetoArte: new FormControl(''),
+      classe: new FormControl(''),
+      mes: new FormControl(''),
+      ano: new FormControl('')
     })  
 
     //Buscando produtos que o usuario podera participar do leilao, passando o token como parametro
@@ -105,9 +122,34 @@ arteListFiltrado: Arte[] = []
     this.arteListFiltrado = this.arteList
   }
 
+  filtrar() {
+    this.arteListFiltrado = this.arteList
+    this.filtraTipoArte()
+    this.filtrarClasse()
+    this.filtrarMes()
+    this.filtrarAno()
+  }
+
   filtraTipoArte() {
-    this.arteListFiltrado = this.arteList.filter(e => e.tipoObjetoArte == this.filtrosForm.get('tipoObjetoArte').value)    
+    if(this.filtrosForm.get('tipoObjetoArte').value != "")
+      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.tipoObjetoArte == this.filtrosForm.get('tipoObjetoArte').value)    
+  }
+
+  filtrarClasse() {
+    if(this.filtrosForm.get('classe').value != "")
+      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.comprado == this.filtrosForm.get('classe').value)    
+  }
+
+  filtrarMes() {
+    if(this.filtrosForm.get('mes').value != "")
+      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.mesCompra == this.filtrosForm.get('mes').value)    
+  }
+
+  filtrarAno() {
+    if(this.filtrosForm.get('ano').value != "")
+      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.anoCompra == this.filtrosForm.get('ano').value)    
   }
 
   get tipoObjetoArte() { return this.filtrosForm.get('tipoObjetoArte') }
+  get classe() { return this.filtrosForm.get('classe') }
 }

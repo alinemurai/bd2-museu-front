@@ -43,7 +43,9 @@ export class CadastroArteComponent implements OnInit {
 
       comprado: new FormControl('', [Validators.required]),
       
-      colecao: new FormControl('')
+      colecao: new FormControl(''),
+      
+      dataCompra: new FormControl('', [Validators.required])
     });
     
   }
@@ -107,4 +109,6 @@ export class CadastroArteComponent implements OnInit {
   get comprado() { return this.cadastroForm.get('comprado')}
 
   get colecao() { return this.cadastroForm.get('colecao')}
+
+  get dataCompra() { return this.cadastroForm.get('dataCompra')}
 }
