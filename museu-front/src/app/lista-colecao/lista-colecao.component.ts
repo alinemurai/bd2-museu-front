@@ -10,6 +10,7 @@ import { Colecao } from '../models/Colecao';
 })
 export class ListaColecaoComponent implements OnInit {
 
+  dadosGrafico: any = {data: [], categories: [], name: "", type: "bar"};
   anos: number[] = []
   tipoArteList: string[] = []
   public filtrosForm: any
@@ -66,6 +67,9 @@ export class ListaColecaoComponent implements OnInit {
       }))   
       //todos os produtos que estao em data sao passados para leilaoList, que renderiza no html
       this.leilaoList = data
+      this.dadosGrafico.data = this.colecaoList.mao(x => x.qtd_emprestimos)
+      this.dadosGrafico.categories = this.colecaoList.map(x => x.nome)
+      this.dadosGrafico.name = "Empréstimos por coleção"
     })*/
   }
 }

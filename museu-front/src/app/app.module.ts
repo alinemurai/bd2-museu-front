@@ -15,6 +15,8 @@ import { ArteService } from './services/arte.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ListaColecaoComponent } from './lista-colecao/lista-colecao.component';
 import { ColecaoService } from './services/colecao.service';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { GraficoComponent } from './grafico/grafico.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ColecaoService } from './services/colecao.service';
     ListaArteComponent,
     HeaderComponent,
     ListaColecaoComponent,
+    GraficoComponent,
   ],
   imports: [
     HttpClientModule,
@@ -34,7 +37,8 @@ import { ColecaoService } from './services/colecao.service';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatTableModule
+    MatTableModule,
+    NgApexchartsModule
   ],
   providers: [
     ArteService,

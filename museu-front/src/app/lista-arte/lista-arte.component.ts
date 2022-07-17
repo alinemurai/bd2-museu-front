@@ -10,6 +10,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class ListaArteComponent implements OnInit {
 
+  dadosGrafico: any = {data: [], categories: [], name: "", type: "line"};
+
   tipoArteList: string[] = []
   public filtrosForm: any
   colunas: string[] = [
@@ -41,9 +43,9 @@ export class ListaArteComponent implements OnInit {
     tipoObjetoArte: 'objetoArte',
     colecao: 'colecao',
     comprado: 1,
-    dataCompra: "10/03/2021",
+    dataCompra: "10/03/2022",
     mesCompra: 3,
-    anoCompra: 2021
+    anoCompra: 2022
   },
   {numid: '2',
   nome_artista: 'nome artista',
@@ -57,9 +59,9 @@ export class ListaArteComponent implements OnInit {
   tipoObjetoArte: 'o2',
   colecao: 'colecao',
   comprado: 0,
-  dataCompra: "10/03/2021",
-  mesCompra: 3,
-  anoCompra: 2021
+  dataCompra: "10/02/2022",
+  mesCompra: 2,
+  anoCompra: 2022
 },
 {numid: '3',
   nome_artista: 'nome artista',
@@ -69,13 +71,45 @@ export class ListaArteComponent implements OnInit {
   descricao: 'descricao',
   cultura: 'cultura',
   estilo: 'estilo',
-  custo: 2,
+  custo: 3,
   tipoObjetoArte: 'o2',
   colecao: 'colecao',
   comprado: 1,
-  dataCompra: "10/03/2021",
-  mesCompra: 3,
-  anoCompra: 2021
+  dataCompra: "10/02/2023",
+  mesCompra: 2,
+  anoCompra: 2023
+},
+{numid: '3',
+  nome_artista: 'nome artista',
+  periodo: 'periodo',
+  ano: 2000,
+  titulo: 'titulo',
+  descricao: 'descricao',
+  cultura: 'cultura',
+  estilo: 'estilo',
+  custo: 5,
+  tipoObjetoArte: 'o2',
+  colecao: 'colecao',
+  comprado: 1,
+  dataCompra: "10/02/2022",
+  mesCompra: 2,
+  anoCompra: 2022
+},
+{numid: '5',
+  nome_artista: 'nome artista',
+  periodo: 'periodo',
+  ano: 2000,
+  titulo: 'titulo',
+  descricao: 'descricao',
+  cultura: 'cultura',
+  estilo: 'estilo',
+  custo: 6,
+  tipoObjetoArte: 'o2',
+  colecao: 'colecao',
+  comprado: 1,
+  dataCompra: "08/04/2022",
+  mesCompra: 4,
+  anoCompra: 2022
 },]
 
   arteListFiltrado: Arte[] = []
@@ -120,6 +154,38 @@ export class ListaArteComponent implements OnInit {
     })
 
     this.arteListFiltrado = this.arteList
+
+    //preenchendo dados do grafico de gasto
+    let yMesAnoCompra: number[] = []
+    let xMesAnoCompra: string[] = []
+    let arteListOrdenado = this.arteList.sort(function (a, b) {
+      if(a.anoCompra < b.anoCompra)
+        return -1;
+      
+      if(a.anoCompra > b.anoCompra)
+        return 1;
+      else
+        if(a.mesCompra < b.mesCompra)
+          return -1;
+        else
+          return 1;
+    })
+    this.arteList.forEach(a => {
+
+      if(xMesAnoCompra.includes(a.dataCompra.substring(3))) {
+        yMesAnoCompra[xMesAnoCompra.indexOf(a.dataCompra.substring(3))] +=  a.custo
+      }
+      else {
+        yMesAnoCompra.push(a.custo)
+      }
+
+      //se nao houver no array o mes ano do objeto x, armazena no array
+      if(!xMesAnoCompra.includes(a.dataCompra.substring(3)))
+        xMesAnoCompra.push(a.dataCompra.substring(3))
+    })
+    this.dadosGrafico.data = yMesAnoCompra
+    this.dadosGrafico.categories = xMesAnoCompra
+    this.dadosGrafico.name = "Gastos do mês"
   }
 
   filtrar() {
