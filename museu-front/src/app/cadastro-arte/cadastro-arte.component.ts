@@ -3,6 +3,9 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ArteService } from '../services/arte.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import { Colecao } from '../models/Colecao';
+import { Observable } from 'rxjs';
+import { ColecaoService } from '../services/colecao.service';
 
 @Component({
   selector: 'app-cadastro-arte',
@@ -11,7 +14,9 @@ import Swal from 'sweetalert2'
 export class CadastroArteComponent implements OnInit {
 
   public cadastroForm: any
-  constructor(private routes: Router, private cadastroArteService: ArteService) { }
+  colecao$!: Observable<Colecao[]>;
+
+  constructor(private routes: Router, private cadastroArteService: ArteService, private colecaoService: ColecaoService) { }
   radios: Array<any> = [
     { name: 'Comprado', value: '1' },
     { name: 'Emprestado', value: '0' },
@@ -47,7 +52,8 @@ export class CadastroArteComponent implements OnInit {
       
       dataCompra: new FormControl('', [Validators.required])
     });
-    
+    this.colecao$ = this.colecaoService.getAll();
+
   }
 
   //Ao chamar este metodo, e enviado os valores inseridos pelo usuario para o servico, juntamente com o token e retornado uma

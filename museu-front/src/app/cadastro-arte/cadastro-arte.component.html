@@ -86,20 +86,23 @@
                                 <p>Nome do artista muito longa</p>
                             </div>
                         </div>
+                        <!-- PRECISA VER AINDA COMO PEGAR OS TIPOS DE ARTE -->
                         <div class="col-4">
                             <label for="tipoObjetoArte" class="form-label">Tipo de objeto arte</label>
-                            <input type="text" class="form-control" id="tipoObjetoArte" required placeholder="Digite o tipo de objeto de arte"
-                             formControlName="tipoObjetoArte" 
-                             [ngClass]="{ 'is-invalid': tipoObjetoArte.errors && (tipoObjetoArte.dirty || tipoObjetoArte.touched)} ">
-                            <div *ngIf="tipoObjetoArte.errors?.required && (tipoObjetoArte.dirty || tipoObjetoArte.touched)" class="text-danger" >
-                                <p>Preencha o tipo de objeto arte</p>
-                            </div>
-                            <div *ngIf="tipoObjetoArte.errors?.minlength && (tipoObjetoArte.dirty || tipoObjetoArte.touched)" class="text-danger">
-                                <p>Tipo de objeto arte muito curto</p>
-                            </div>
-                            <div *ngIf="tipoObjetoArte.errors?.maxlength && (tipoObjetoArte.dirty || tipoObjetoArte.touched)" class="text-danger">
-                                <p>Tipo de objeto arte muito longo</p>
-                            </div>
+                            <select
+                                        id="tipoObjetoArte"
+                                        formControlName="tipoObjetoArte"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': tipoObjetoArte.errors && (tipoObjetoArte.dirty || tipoObjetoArte.touched)}"
+                                    >
+                                        <option value="">Selecione o tipo de arte</option>
+                                        <option value="Pintura">Pintura</option>
+                                        <option value="Escultura">Escultura</option>
+                                        <option value="Outros">Outros</option>
+                                    </select>
+                                    <div *ngIf="tipoObjetoArte.errors" class="invalid-feedback">
+                                        <div *ngIf="tipoObjetoArte.errors.required">Tipo de objeto de arte é obrigatório</div>
+                                    </div>
                         </div>
                     </div>
                     <br>
@@ -171,12 +174,19 @@
                         </div>
                         <div class="col-4" *ngIf="cadastroForm.get('comprado').value == '0'">
                             <label for="colecao" class="form-label">Coleção</label>
-                            <input type="text" class="form-control" id="colecao" required placeholder="Digite o nome da coleção"
-                             formControlName="colecao" 
-                             [ngClass]="{ 'is-invalid': colecao.errors && (colecao.dirty || colecao.touched)}">
-                            <div *ngIf="colecao.errors?.required && (colecao.dirty || colecao.touched)" class="text-danger" >
-                                <p>Preencha o nome da colecao</p>
-                            </div>
+                            <select
+                                formControlName="colecao"
+                                class="form-control"
+                            >
+                                <option value="">Selecione uma coleção</option>
+                                <option
+                                    *ngFor="let colecao of colecao$ | async"
+                                    [ngValue]="colecao.nome"
+                                >
+                                    {{ colecao.nome }}
+                                </option>
+                            </select>
+
                         </div>
                     </div>
                     <br>

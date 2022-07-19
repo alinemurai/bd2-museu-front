@@ -21,6 +21,10 @@ export class ColecaoService {
 
   constructor(private http: HttpClient) { }
 
+  getAll() : Observable<any> {
+    //Requisicao GET para o caminho /products, retorna todos os produtos cadastrados
+    return this.http.get(this.produtoUrl+"colecao", this.httpOptions)
+  }
   //Metodo que recebe todos os produtos cadastrados que estao disponiveis para o usuario participar
   getColecaos(mes: number, ano: number) : Observable<any> {
     //Requisicao GET para o caminho /products, retorna todos os produtos cadastrados
