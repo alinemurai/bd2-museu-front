@@ -4,8 +4,10 @@ import { ArteService } from '../services/arte.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
 import { Colecao } from '../models/Colecao';
+import { Artista } from '../models/Artista';
 import { Observable } from 'rxjs';
 import { ColecaoService } from '../services/colecao.service';
+import { ArtistaService } from '../services/artista.service';
 
 @Component({
   selector: 'app-cadastro-arte',
@@ -15,8 +17,9 @@ export class CadastroArteComponent implements OnInit {
 
   public cadastroForm: any
   colecao$!: Observable<Colecao[]>;
+  artitas$!: Observable<Artista[]>;
 
-  constructor(private routes: Router, private cadastroArteService: ArteService, private colecaoService: ColecaoService) { }
+  constructor(private routes: Router, private cadastroArteService: ArteService, private colecaoService: ColecaoService, private artistaService: ArtistaService) { }
   radios: Array<any> = [
     { name: 'Comprado', value: '1' },
     { name: 'Emprestado', value: '0' },
@@ -53,7 +56,8 @@ export class CadastroArteComponent implements OnInit {
       dataCompra: new FormControl('', [Validators.required])
     });
     this.colecao$ = this.colecaoService.getAll();
-
+    this.artitas$ = this.artistaService.getArtista();
+    
   }
 
   //Ao chamar este metodo, e enviado os valores inseridos pelo usuario para o servico, juntamente com o token e retornado uma

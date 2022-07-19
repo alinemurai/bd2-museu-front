@@ -20,6 +20,8 @@ import { GraficoComponent } from './grafico/grafico.component';
 import { ListaArteDataComponent } from './lista-arte-data/lista-arte-data.component';
 import { GraficoColecaoComponent } from './grafico-colecao/grafico-colecao.component';
 import { ListaEmprestadosComponent } from './lista-emprestados/lista-emprestados.component';
+import { Artista } from './models/Artista';
+import { ArtistaService } from './services/artista.service';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { ListaEmprestadosComponent } from './lista-emprestados/lista-emprestados
   providers: [
     ArteService,
     ColecaoService,
+    ArtistaService,
     HttpClient
   ],
   bootstrap: [AppComponent]

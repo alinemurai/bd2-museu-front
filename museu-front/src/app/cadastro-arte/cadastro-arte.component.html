@@ -73,36 +73,29 @@
                         </div>
                         <div class="col-4">
                             <label for="nomeArtista" class="form-label">Nome do Artista</label>
-                            <input type="text" class="form-control" id="nomeArtista" required placeholder="Digite o nome do artista"
-                             formControlName="nomeArtista" 
-                             [ngClass]="{ 'is-invalid': nomeArtista.errors && (nomeArtista.dirty || nomeArtista.touched)} ">
-                            <div *ngIf="nomeArtista.errors?.required && (nomeArtista.dirty || nomeArtista.touched)" class="text-danger" >
-                                <p>Preencha o nome do artista</p>
-                            </div>
-                            <div *ngIf="nomeArtista.errors?.minlength && (nomeArtista.dirty || nomeArtista.touched)" class="text-danger">
-                                <p>Nome do artista muito curto</p>
-                            </div>
-                            <div *ngIf="descricao.errors?.maxlength && (descricao.dirty || descricao.touched)" class="text-danger">
-                                <p>Nome do artista muito longa</p>
-                            </div>
+                            <select
+                                id="nomeArtista" formControlName="nomeArtista" class="form-control"
+                            >
+                                <option value="">Selecione o artista</option>
+                            </select>
                         </div>
                         <!-- PRECISA VER AINDA COMO PEGAR OS TIPOS DE ARTE -->
                         <div class="col-4">
                             <label for="tipoObjetoArte" class="form-label">Tipo de objeto arte</label>
                             <select
-                                        id="tipoObjetoArte"
-                                        formControlName="tipoObjetoArte"
-                                        class="form-control"
-                                        [ngClass]="{ 'is-invalid': tipoObjetoArte.errors && (tipoObjetoArte.dirty || tipoObjetoArte.touched)}"
-                                    >
-                                        <option value="">Selecione o tipo de arte</option>
-                                        <option value="Pintura">Pintura</option>
-                                        <option value="Escultura">Escultura</option>
-                                        <option value="Outros">Outros</option>
-                                    </select>
-                                    <div *ngIf="tipoObjetoArte.errors" class="invalid-feedback">
-                                        <div *ngIf="tipoObjetoArte.errors.required">Tipo de objeto de arte é obrigatório</div>
-                                    </div>
+                                id="tipoObjetoArte"
+                                formControlName="tipoObjetoArte"
+                                class="form-control"
+                                [ngClass]="{ 'is-invalid': tipoObjetoArte.errors && (tipoObjetoArte.dirty || tipoObjetoArte.touched)}"
+                            >
+                                <option value="">Selecione o tipo de arte</option>
+                                <option value="Pintura">Pintura</option>
+                                <option value="Escultura">Escultura</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                            <div *ngIf="tipoObjetoArte.errors" class="invalid-feedback">
+                                <div *ngIf="tipoObjetoArte.errors.required">Tipo de objeto de arte é obrigatório</div>
+                            </div>
                         </div>
                     </div>
                     <br>
