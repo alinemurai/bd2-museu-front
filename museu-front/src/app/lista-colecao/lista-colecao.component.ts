@@ -10,7 +10,7 @@ import { Colecao } from '../models/Colecao';
 })
 export class ListaColecaoComponent implements OnInit {
 
-  dadosGrafico: any = {data: [], categories: [], name: "", type: "bar"};
+  dadosGraficoColecao: any = {data: [], categories: [], name: "", type: "bar"};
   anos: number[] = []
   tipoArteList: string[] = []
   public filtrosForm: any
@@ -25,7 +25,7 @@ export class ListaColecaoComponent implements OnInit {
   ];
   //Variavel utilizada para paginacao
   paginaAtual = 1
-  //Armazenamento da lista de leiloes
+  //Armazenamento da lista de colecao
   colecaoList: Colecao[] = []
 
   constructor(private routes: Router, private colecaoService: ColecaoService) { }
@@ -41,6 +41,7 @@ export class ListaColecaoComponent implements OnInit {
     })  
 
     this.populaListColecao(0, 0);
+
   }
 
   filtrar() {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import {
   ChartComponent,
@@ -16,15 +16,14 @@ export type ChartOptions = {
 };
 
 @Component({
-  selector: 'app-grafico',
-  templateUrl: './grafico.component.html',
-  styleUrls: ['./grafico.component.css']
+  selector: 'app-grafico-colecao',
+  templateUrl: './grafico-colecao.component.html',
+  styleUrls: ['./grafico-colecao.component.css']
 })
+export class GraficoColecaoComponent implements OnInit {
 
-
-export class GraficoComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent | null = null;
-  @Input() dadosGrafico: any = {data: [], categories: []};
+  @Input() dadosGraficoColecao: any = {data: [], categories: []};
   public chartOptions: Partial<ChartOptions> = {
     series: [
       {
@@ -37,7 +36,7 @@ export class GraficoComponent implements OnInit {
       type: "line"
     },
     title: {
-      text: "My First Angular Chart"
+      text: "Quantidade Total de Objetos de Arte"
     },
     xaxis: {
       categories: ["Jan", "Feb",  "Mar",  "Apr",  "May",  "Jun",  "Jul",  "Aug", "Sep"]
@@ -49,19 +48,19 @@ export class GraficoComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: this.dadosGrafico.name,
-          data: this.dadosGrafico.data
+          name: this.dadosGraficoColecao.name,
+          data: this.dadosGraficoColecao.data
         }
       ],
       chart: {
         height: 350,
-        type: this.dadosGrafico.type
+        type: this.dadosGraficoColecao.type
       },
       title: {
-        text: "Gastos com Objetos de Arte"
+        text: "Quantidade Total de Objetos de Arte"
       },
       xaxis: {
-        categories: this.dadosGrafico.categories
+        categories: this.dadosGraficoColecao.categories
       }
     };
   }

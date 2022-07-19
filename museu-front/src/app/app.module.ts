@@ -17,6 +17,9 @@ import { ListaColecaoComponent } from './lista-colecao/lista-colecao.component';
 import { ColecaoService } from './services/colecao.service';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { GraficoComponent } from './grafico/grafico.component';
+import { ListaArteDataComponent } from './lista-arte-data/lista-arte-data.component';
+import { GraficoColecaoComponent } from './grafico-colecao/grafico-colecao.component';
+import { ListaEmprestadosComponent } from './lista-emprestados/lista-emprestados.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { GraficoComponent } from './grafico/grafico.component';
     HeaderComponent,
     ListaColecaoComponent,
     GraficoComponent,
+    ListaArteDataComponent,
+    GraficoColecaoComponent,
+    ListaEmprestadosComponent,
   ],
   imports: [
     HttpClientModule,
