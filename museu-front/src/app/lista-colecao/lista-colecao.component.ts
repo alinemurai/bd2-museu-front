@@ -12,7 +12,6 @@ export class ListaColecaoComponent implements OnInit {
 
   dadosGraficoColecao: any = {data: [], categories: [], name: "", type: "bar"};
   anos: number[] = []
-  tipoArteList: string[] = []
   public filtrosForm: any
   colunas: string[] = [
     'nome',
@@ -23,8 +22,6 @@ export class ListaColecaoComponent implements OnInit {
     'endereco',
     'pessoa_contato'
   ];
-  //Variavel utilizada para paginacao
-  paginaAtual = 1
   //Armazenamento da lista de colecao
   colecaoList: Colecao[] = []
 
@@ -32,7 +29,7 @@ export class ListaColecaoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    for(let i = 2022; i >=1700; i--)
+    for(let i = 2022; i >=1500; i--)
       this.anos.push(i)
 
     this.filtrosForm = new FormGroup({
@@ -40,37 +37,37 @@ export class ListaColecaoComponent implements OnInit {
       ano: new FormControl('')
     })  
 
-    this.populaListColecao(0, 0);
+    this.colecaoService.getColecaos()
+      .subscribe(rst => {
+        this.populaListColecao(rst);
+      })
 
   }
 
   filtrar() {
-    let mes = this.filtrosForm.get('mes').value == "" ? 0 : this.filtrosForm.get('mes').value
-    let ano = this.filtrosForm.get('ano').value == "" ? 0 : this.filtrosForm.get('ano').value
-    this.populaListColecao(mes, ano)
+    let filter = {year: "", month: ""};
+    if(this.filtrosForm.get('ano').value != "") 
+      filter.year = this.filtrosForm.get('ano').value;
+    if(this.filtrosForm.get('mes').value != "") 
+      filter.month = this.filtrosForm.get('mes').value;
+
+    this.colecaoService.getColecaos(filter)
+            .subscribe(rst => {
+                    this.populaListColecao(rst);
+        });
   }
 
-  populaListColecao(mes: number, ano: number) {
-    //Buscando produtos que o usuario podera participar do leilao, passando o token como parametro
-    /*this.colecaoService.getColecaos()
-    .subscribe(rst => {
-      //Se houver uma resposta do servidor entao e mapeado todos os dados recebido na constante data
-      const data = rst.data.map((data: any) => ({ 
-        id: data._id,
-        dataFinal: data.dataFinal, 
-        dataInicio: data.dataInicio, 
-        localizacao: data.localizacao, 
-        nome: data.nome, 
-        valorInicial: data.valorInicial,
-        fotoLeilao: environment.FILES+data.urlImagem,
-        usuario: data.usuario,
-        status: data.status
-      }))   
-      //todos os produtos que estao em data sao passados para leilaoList, que renderiza no html
-      this.leilaoList = data
-      this.dadosGrafico.data = this.colecaoList.mao(x => x.qtd_emprestimos)
-      this.dadosGrafico.categories = this.colecaoList.map(x => x.nome)
-      this.dadosGrafico.name = "Empréstimos por coleção"
-    })*/
+  populaListColecao(rst: any) {
+    const data = rst.map((data: any) => ({
+      nome: data.nome,
+      qtd_emprestimos: data.qtd_emprestimos,
+      descricao: data.descricao,
+      tipo: data.tipo,
+      telefone: data.telefone,
+      endereco: data.endereco,
+      pessoa_contato: data.pessoa_contato
+    }))
+
+    this.colecaoList = data
   }
 }
