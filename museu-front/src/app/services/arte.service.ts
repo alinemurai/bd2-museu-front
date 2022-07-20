@@ -41,7 +41,7 @@ export class ArteService {
         if (filter._class) {
             if (filter.type) url += '&';
             else url += '?';
-            url += `_class=${filter.type}`;
+            url += `_class=${filter._class}`;
         }
     }
     //Requisicao GET para o caminho /products, retorna todos os produtos cadastrados
