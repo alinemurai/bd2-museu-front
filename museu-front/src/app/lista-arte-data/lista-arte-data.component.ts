@@ -64,7 +64,7 @@ export class ListaArteDataComponent implements OnInit {
   populateArteList(rst: any): void {
    //Se houver uma resposta do servidor entao e mapeado todos os dados recebido na constante data
    const data = rst.map((data: any) => ({ 
-    titulo: rst.titulo,
+    titulo: data.titulo,
     tipo: data.tipo,
     custo: data.custo,
     estilo: data.estilo,
