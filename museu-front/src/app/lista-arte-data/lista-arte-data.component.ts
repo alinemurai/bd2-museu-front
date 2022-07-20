@@ -55,7 +55,7 @@ export class ListaArteDataComponent implements OnInit {
     if(this.filtrosForm.get('mes').value != "") 
       filter.month = this.filtrosForm.get('mes').value;
 
-    this.arteService.getArtes(filter)
+    this.arteService.getArtesCompradas(filter)
             .subscribe(rst => {
                     this.populateArteList(rst);
         });
