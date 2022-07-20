@@ -28,7 +28,7 @@ export class ArteService {
     //Atualizando o header da requisicao para enviar o token
     //Fazendo a requisicao com o metodo POST para o metodo /products do back, enviando todos os dados no formData
     //Sera retornado uma resposta para saber se foi cadastrado com sucesso
-    return this.http.post(this.produtoUrl+"artes", arte, this.httpOptions)
+    return this.http.post(this.produtoUrl+"api/art-object", arte, this.httpOptions)
   }
 
   //Metodo que recebe todos os produtos cadastrados que estao disponiveis para o usuario participar
