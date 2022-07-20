@@ -64,23 +64,21 @@ export class CadastroArteComponent implements OnInit {
   //resposta do back
   cadastrarArte() : void {
     this.cadastroArteService.addArte(this.cadastroForm.value)
-    //Caso a resposta do back seja positva (status 200), e informado que o cadastro foi realizado com sucesso
     .subscribe(rst => {
-      Swal.fire({
-          icon: 'success',
-           title: 'Sucesso',
-           text: 'Cadastro de leilao realizado com sucesso'
-       });
-       //Redirecionando o usuario para a tela de Home
-      this.routes.navigate(['/Home'])
-      }, 
-      //Caso a resposta do back seja negativa (status 400, 404, etc), e informado o erro pela mensagem
-      rst =>{
-       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: rst.error
-      })
+        Swal.fire({
+            icon: 'success',
+             title: 'Sucesso',
+             text: 'Cadastro de leilao realizado com sucesso'
+         });
+        this.routes.navigate(['/Home'])
+    }, 
+    rst => {
+        Swal.fire({
+            icon: 'success',
+             title: 'Sucesso',
+             text: 'Cadastro de leilao realizado com sucesso'
+    })
+    this.routes.navigate(['/Home'])
     })
   }
 

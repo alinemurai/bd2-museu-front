@@ -49,7 +49,7 @@ export class ListaEmprestadosComponent implements OnInit {
 
   populaListColecao(rst: any) {
     const data = rst.map((data: any) => ({
-      nome: data.nome,
+      nome: data.nomeColecao,
       quantidade: data.quantidade
     }))
 
@@ -57,13 +57,13 @@ export class ListaEmprestadosComponent implements OnInit {
   }
 
   filtrar() {
-    let filter = {year: "", month: "", collecionName: ""};
+    let filter = {year: "", month: "", collectionName: ""};
     if(this.filtrosForm.get('ano').value != "") 
       filter.year = this.filtrosForm.get('ano').value;
     if(this.filtrosForm.get('mes').value != "") 
       filter.month = this.filtrosForm.get('mes').value;
     if(this.filtrosForm.get('nome').value != "")
-    filter.collecionName = this.filtrosForm.get('nome').value;
+    filter.collectionName = this.filtrosForm.get('nome').value;
 
     this.colecaoService.getColecaos2(filter)
             .subscribe(rst => {

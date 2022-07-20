@@ -73,11 +73,8 @@
                         </div>
                         <div class="col-4">
                             <label for="nomeArtista" class="form-label">Nome do Artista</label>
-                            <select
-                                id="nomeArtista" formControlName="nomeArtista" class="form-control"
-                            >
-                                <option value="">Selecione o artista</option>
-                            </select>
+                            <input type="text" class="form-control" id="nomeArtista" required placeholder="Digite o nome artista"
+                            formControlName="nomeArtista" >
                         </div>
                         <!-- PRECISA VER AINDA COMO PEGAR OS TIPOS DE ARTE -->
                         <div class="col-4">
@@ -104,8 +101,7 @@
                             <label for="custo" class="form-label">Custo</label>
                             <input type="text" class="form-control" id="custo" required placeholder="Digite o custo"
                              formControlName="custo" 
-                             [ngClass]="{ 'is-invalid': custo.errors && (custo.dirty || custo.touched)}"
-                             (blur)="formatarValorFinal()">
+                             [ngClass]="{ 'is-invalid': custo.errors && (custo.dirty || custo.touched)}">
                             <div *ngIf="custo.errors?.required && (custo.dirty || custo.touched)" class="text-danger" >
                                 <p>Preencha o custo</p>
                             </div>

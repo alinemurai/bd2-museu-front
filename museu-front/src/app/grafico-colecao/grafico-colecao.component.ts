@@ -45,6 +45,7 @@ export class GraficoColecaoComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    
     this.chartOptions = {
       series: [
         {

@@ -45,6 +45,10 @@ export class GraficoComponent implements OnInit {
   };;
   constructor() {}
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.UpdateGraphics(changes.dadosGraficos)
+  }
+
   ngOnInit(): void {
     this.chartOptions = {
       series: [

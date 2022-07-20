@@ -41,9 +41,11 @@ export class ListaArteDataComponent implements OnInit {
       ano: new FormControl('')
     })  
 
+    console.log("antes do getArtes")
     //Buscando produtos que o usuario podera participar do leilao, passando o token como parametro
     this.arteService.getArtesCompradas()
     .subscribe(rst => {
+      console.log("para entrar no papulate")
       this.populateArteList(rst)
     })
   }
@@ -101,6 +103,8 @@ export class ListaArteDataComponent implements OnInit {
     if(!xMesAnoCompra.includes(a.dataCompra.substring(3)))
       xMesAnoCompra.push(a.dataCompra.substring(3))
   })
+
+  console.log("dadosGraficos", this.dadosGrafico)
   this.dadosGrafico.data = yMesAnoCompra
   this.dadosGrafico.categories = xMesAnoCompra
   this.dadosGrafico.name = "Gastos do mês"
