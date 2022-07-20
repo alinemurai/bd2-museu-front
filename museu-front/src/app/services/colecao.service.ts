@@ -10,7 +10,7 @@ import { Arte } from '../models/Arte';
 export class ColecaoService {
 
   //Rota do backend padrao
-  produtoUrl = 'http://localhost:2828/'
+  produtoUrl = 'http://localhost:8080/'
 
   //Opcoes de configuracao da requisicao HTTP
   httpOptions = {

@@ -81,20 +81,20 @@
                         </div>
                         <!-- PRECISA VER AINDA COMO PEGAR OS TIPOS DE ARTE -->
                         <div class="col-4">
-                            <label for="tipoObjetoArte" class="form-label">Tipo de objeto arte</label>
+                            <label for="tipo" class="form-label">Tipo de objeto arte</label>
                             <select
-                                id="tipoObjetoArte"
-                                formControlName="tipoObjetoArte"
+                                id="tipo"
+                                formControlName="tipo"
                                 class="form-control"
-                                [ngClass]="{ 'is-invalid': tipoObjetoArte.errors && (tipoObjetoArte.dirty || tipoObjetoArte.touched)}"
+                                [ngClass]="{ 'is-invalid': tipo.errors && (tipo.dirty || tipo.touched)}"
                             >
                                 <option value="">Selecione o tipo de arte</option>
                                 <option value="Pintura">Pintura</option>
                                 <option value="Escultura">Escultura</option>
                                 <option value="Outros">Outros</option>
                             </select>
-                            <div *ngIf="tipoObjetoArte.errors" class="invalid-feedback">
-                                <div *ngIf="tipoObjetoArte.errors.required">Tipo de objeto de arte é obrigatório</div>
+                            <div *ngIf="tipo.errors" class="invalid-feedback">
+                                <div *ngIf="tipo.errors.required">Tipo de objeto de arte é obrigatório</div>
                             </div>
                         </div>
                     </div>

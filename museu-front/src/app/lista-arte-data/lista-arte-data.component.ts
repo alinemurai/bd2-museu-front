@@ -18,12 +18,12 @@ export class ListaArteDataComponent implements OnInit {
   colunas: string[] = [
     'titulo',
     'descricao',
-    'nome_artista',
+    'nomeArtista',
     'custo',
     'periodo',
     'ano',
     'cultura',
-    'tipoObjetoArte',
+    'tipo',
     'estilo',
     'colecao',
     'dataCompra',
@@ -33,7 +33,7 @@ export class ListaArteDataComponent implements OnInit {
   //Armazenamento da lista de leiloes
   arteList: Arte[] = [ {
     numid: '1',
-    nome_artista: 'nome artista',
+    nomeArtista: 'nome artista',
     periodo: 'periodo',
     ano: 2000,
     titulo: 'titulo',
@@ -41,7 +41,7 @@ export class ListaArteDataComponent implements OnInit {
     cultura: 'cultura',
     estilo: 'estilo',
     custo: 2,
-    tipoObjetoArte: 'objetoArte',
+    tipo: 'objetoArte',
     colecao: 'colecao',
     comprado: 1,
     dataCompra: "10/03/2022",
@@ -49,7 +49,7 @@ export class ListaArteDataComponent implements OnInit {
     anoCompra: 2022
   },
   {numid: '2',
-  nome_artista: 'nome artista',
+  nomeArtista: 'nome artista',
   periodo: 'periodo',
   ano: 2000,
   titulo: 'titulo',
@@ -57,7 +57,7 @@ export class ListaArteDataComponent implements OnInit {
   cultura: 'cultura',
   estilo: 'estilo',
   custo: 2,
-  tipoObjetoArte: 'o2',
+  tipo: 'o2',
   colecao: 'colecao',
   comprado: 0,
   dataCompra: "10/02/2022",
@@ -65,7 +65,7 @@ export class ListaArteDataComponent implements OnInit {
   anoCompra: 2022
 },
 {numid: '3',
-  nome_artista: 'nome artista',
+  nomeArtista: 'nome artista',
   periodo: 'periodo',
   ano: 2000,
   titulo: 'titulo',
@@ -73,7 +73,7 @@ export class ListaArteDataComponent implements OnInit {
   cultura: 'cultura',
   estilo: 'estilo',
   custo: 3,
-  tipoObjetoArte: 'o2',
+  tipo: 'o2',
   colecao: 'colecao',
   comprado: 1,
   dataCompra: "10/02/2023",
@@ -81,7 +81,7 @@ export class ListaArteDataComponent implements OnInit {
   anoCompra: 2023
 },
 {numid: '3',
-  nome_artista: 'nome artista',
+  nomeArtista: 'nome artista',
   periodo: 'periodo',
   ano: 2000,
   titulo: 'titulo',
@@ -89,7 +89,7 @@ export class ListaArteDataComponent implements OnInit {
   cultura: 'cultura',
   estilo: 'estilo',
   custo: 5,
-  tipoObjetoArte: 'o2',
+  tipo: 'o2',
   colecao: 'colecao',
   comprado: 1,
   dataCompra: "10/02/2022",
@@ -97,7 +97,7 @@ export class ListaArteDataComponent implements OnInit {
   anoCompra: 2022
 },
 {numid: '5',
-  nome_artista: 'nome artista',
+  nomeArtista: 'nome artista',
   periodo: 'periodo',
   ano: 2000,
   titulo: 'titulo',
@@ -105,7 +105,7 @@ export class ListaArteDataComponent implements OnInit {
   cultura: 'cultura',
   estilo: 'estilo',
   custo: 6,
-  tipoObjetoArte: 'o2',
+  tipo: 'o2',
   colecao: 'colecao',
   comprado: 1,
   dataCompra: "08/04/2022",
@@ -124,7 +124,7 @@ export class ListaArteDataComponent implements OnInit {
     this.anos.push(i)
 
     this.filtrosForm = new FormGroup({
-      tipoObjetoArte: new FormControl(''),
+      tipo: new FormControl(''),
       classe: new FormControl(''),
       mes: new FormControl(''),
       ano: new FormControl('')
@@ -150,8 +150,8 @@ export class ListaArteDataComponent implements OnInit {
     })*/
 
     this.arteList.forEach((e) => {
-      if(!this.tipoArteList.includes(e.tipoObjetoArte))
-        this.tipoArteList.push(e.tipoObjetoArte)      
+      if(!this.tipoArteList.includes(e.tipo))
+        this.tipoArteList.push(e.tipo)      
     })
 
     this.arteListFiltrado = this.arteList
@@ -198,8 +198,8 @@ export class ListaArteDataComponent implements OnInit {
   }
 
   filtraTipoArte() {
-    if(this.filtrosForm.get('tipoObjetoArte').value != "")
-      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.tipoObjetoArte == this.filtrosForm.get('tipoObjetoArte').value)    
+    if(this.filtrosForm.get('tipo').value != "")
+      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.tipo == this.filtrosForm.get('tipo').value)    
   }
 
   filtrarClasse() {
@@ -217,6 +217,6 @@ export class ListaArteDataComponent implements OnInit {
       this.arteListFiltrado = this.arteListFiltrado.filter(e => e.anoCompra == this.filtrosForm.get('ano').value)    
   }
 
-  get tipoObjetoArte() { return this.filtrosForm.get('tipoObjetoArte') }
+  get tipo() { return this.filtrosForm.get('tipo') }
   get classe() { return this.filtrosForm.get('classe') }
 }

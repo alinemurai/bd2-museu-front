@@ -11,7 +11,7 @@ import { Arte } from '../models/Arte';
 export class ArteService {
 
   //Rota do backend padrao
-  produtoUrl = 'http://localhost:2828/'
+  produtoUrl = 'http://localhost:8080/'
 
   //Opcoes de configuracao da requisicao HTTP
   httpOptions = {
@@ -32,8 +32,19 @@ export class ArteService {
   }
 
   //Metodo que recebe todos os produtos cadastrados que estao disponiveis para o usuario participar
-  getArtes() : Observable<any> {
+  getArtes(filter?: any) : Observable<any> {
+    let url = `${this.produtoUrl}api/art-object`;
+    if (filter) {
+        if (filter.type) {
+            url += `?type=${filter.type}`;
+        }
+        if (filter._class) {
+            if (filter.type) url += '&';
+            else url += '?';
+            url += `_class=${filter.type}`;
+        }
+    }
     //Requisicao GET para o caminho /products, retorna todos os produtos cadastrados
-    return this.http.get(this.produtoUrl+"artes", this.httpOptions)
+    return this.http.get(url, this.httpOptions)
   }
 }

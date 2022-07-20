@@ -1,7 +1,7 @@
 //Classe Produto utilizada para armazenamento dos dados do cadastro-produto e envio para o back
 export class Arte{
     numid: string = "";
-    nome_artista: string = ""; 
+    nomeArtista: string = ""; 
     periodo: string = ""; 
     ano: number = 0; 
     titulo: string = ""; 
@@ -9,7 +9,7 @@ export class Arte{
     cultura: string = ""; 
     estilo: string = "";
     custo: number = 0; 
-    tipoObjetoArte: string = "";
+    tipo: string = "";
     colecao: string = "";
     comprado: number = 0;
     dataCompra: string = "";

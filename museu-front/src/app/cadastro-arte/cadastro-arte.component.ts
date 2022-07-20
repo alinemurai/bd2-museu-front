@@ -40,7 +40,7 @@ export class CadastroArteComponent implements OnInit {
                                         Validators.maxLength(150)]),
       nomeArtista: new FormControl('', [Validators.required, Validators.minLength(2), 
                                           Validators.maxLength(150)]),
-      tipoObjetoArte: new FormControl('', [Validators.required, Validators.minLength(2), 
+      tipo: new FormControl('', [Validators.required, Validators.minLength(2), 
                                             Validators.maxLength(150)]),
       custo: new FormControl('', [Validators.required]),
       
@@ -108,7 +108,7 @@ export class CadastroArteComponent implements OnInit {
 
   get nomeArtista() { return this.cadastroForm.get('nomeArtista') }
 
-  get tipoObjetoArte() { return this.cadastroForm.get('tipoObjetoArte') }
+  get tipo() { return this.cadastroForm.get('tipo') }
 
   get custo() { return this.cadastroForm.get('custo') }
 
