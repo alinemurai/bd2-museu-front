@@ -32,7 +32,7 @@ export class ListaArteDataComponent implements OnInit {
   ngOnInit(): void {
 
     //anos disponiveis no filtro
-    for(let i = 2022; i >=1700; i--)
+    for(let i = 2022; i >=1500; i--)
       this.anos.push(i)
 
     //variaveis para filtro de mes e ano
@@ -74,7 +74,7 @@ export class ListaArteDataComponent implements OnInit {
   this.arteList = data
 
   //preenchendo dados do grafico de gasto
-/*  let yMesAnoCompra: number[] = []
+  let yMesAnoCompra: number[] = []
   let xMesAnoCompra: string[] = []
   let arteListOrdenado = this.arteList.sort(function (a, b) {
     if(a.anoCompra < b.anoCompra)
@@ -103,7 +103,7 @@ export class ListaArteDataComponent implements OnInit {
   })
   this.dadosGrafico.data = yMesAnoCompra
   this.dadosGrafico.categories = xMesAnoCompra
-  this.dadosGrafico.name = "Gastos do mês"*/
+  this.dadosGrafico.name = "Gastos do mês"
   }
 
   get tipo() { return this.filtrosForm.get('tipo') }

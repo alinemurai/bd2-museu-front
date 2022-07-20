@@ -25,9 +25,20 @@ export class ColecaoService {
     //Requisicao GET para o caminho /products, retorna todos os produtos cadastrados
     return this.http.get(this.produtoUrl+"colecao", this.httpOptions)
   }
+
   //Metodo que recebe todos os produtos cadastrados que estao disponiveis para o usuario participar
-  getColecaos(mes: number, ano: number) : Observable<any> {
-    //Requisicao GET para o caminho /products, retorna todos os produtos cadastrados
-    return this.http.get(`${this.produtoUrl}colecao/${mes}/${ano}`, this.httpOptions)
+  getColecaos(filter?: any) : Observable<any> {
+    let url = `${this.produtoUrl}api/collection`;
+    if (filter) {
+        if (filter.year) {
+            url += `?year=${filter.year}`;
+        }
+        if (filter.month) {
+            if (filter.year) url += '&';
+            else url += '?';
+            url += `month=${filter.month}`;
+        }
+    }
+    return this.http.get(url, this.httpOptions)
   }
 }
