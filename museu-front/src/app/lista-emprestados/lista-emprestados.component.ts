@@ -14,7 +14,7 @@ export class ListaEmprestadosComponent implements OnInit {
   anos: number[] = []
   colunas: string[] = [
     'nome',
-    'qtd_emprestimos',
+    'quantidade',
   ];
   //Armazenamento da lista de colecao
   colecaoList: Colecao[] = []
@@ -40,7 +40,7 @@ export class ListaEmprestadosComponent implements OnInit {
   populaListColecao(rst: any) {
     const data = rst.map((data: any) => ({
       nome: data.nome,
-      qtd_emprestimos: data.quantidade
+      quantidade: data.quantidade
     }))
 
     this.colecaoList = data

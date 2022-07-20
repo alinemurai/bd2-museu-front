@@ -15,7 +15,7 @@ export class ListaColecaoComponent implements OnInit {
   public filtrosForm: any
   colunas: string[] = [
     'nome',
-    'qtd_emprestimos',
+    'quantidade',
     'descricao',
     'tipo',
     'telefone',
@@ -60,7 +60,7 @@ export class ListaColecaoComponent implements OnInit {
   populaListColecao(rst: any) {
     const data = rst.map((data: any) => ({
       nome: data.nome,
-      qtd_emprestimos: data.qtd_emprestimos,
+      quantidade: data.quantidade,
       descricao: data.descricao,
       tipo: data.tipo,
       telefone: data.telefone,
