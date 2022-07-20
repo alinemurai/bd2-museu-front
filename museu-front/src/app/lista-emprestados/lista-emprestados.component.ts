@@ -18,6 +18,7 @@ export class ListaEmprestadosComponent implements OnInit {
   ];
   //Armazenamento da lista de colecao
   colecaoList: Colecao[] = []
+  filtroColecao: Colecao[] = []
 
   constructor(private colecaoService: ColecaoService) { }
 
@@ -32,6 +33,15 @@ export class ListaEmprestadosComponent implements OnInit {
   })  
 
   this.colecaoService.getColecaos()
+    .subscribe(rst => {
+      const data = rst.map((data: any) => ({
+        nome: data.nome
+      }))
+  
+      this.filtroColecao = data
+    })
+
+  this.colecaoService.getColecaos2()
     .subscribe(rst => {
       this.populaListColecao(rst);
     })
@@ -55,7 +65,7 @@ export class ListaEmprestadosComponent implements OnInit {
     if(this.filtrosForm.get('nome').value != "")
     filter.collecionName = this.filtrosForm.get('nome').value;
 
-    this.colecaoService.getColecaos(filter)
+    this.colecaoService.getColecaos2(filter)
             .subscribe(rst => {
                     this.populaListColecao(rst);
         });
