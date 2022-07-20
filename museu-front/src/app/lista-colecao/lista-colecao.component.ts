@@ -25,7 +25,7 @@ export class ListaColecaoComponent implements OnInit {
   //Armazenamento da lista de colecao
   colecaoList: Colecao[] = []
 
-  constructor(private routes: Router, private colecaoService: ColecaoService) { }
+  constructor(private colecaoService: ColecaoService) { }
 
   ngOnInit(): void {
 

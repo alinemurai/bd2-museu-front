@@ -41,4 +41,24 @@ export class ColecaoService {
     }
     return this.http.get(url, this.httpOptions)
   }
+
+  getColecaos2(filter?: any) : Observable<any> {
+    let url = `${this.produtoUrl}api/art-object/borrowed/count`;
+    if (filter) {
+        if (filter.year) {
+            url += `?year=${filter.year}`;
+        }
+        if (filter.month) {
+            if (filter.year) url += '&';
+            else url += '?';
+            url += `month=${filter.month}`;
+        }
+        if(filter.collectionName) {
+          if (filter.year || filter.month) url += '&';
+          else url += '?';
+            url += `collectionName=${filter.collectionName}`;
+        }
+    }
+    return this.http.get(url, this.httpOptions)
+  }
 }
