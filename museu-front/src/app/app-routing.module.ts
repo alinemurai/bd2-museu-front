@@ -14,7 +14,7 @@ export const rootRouterConfig: Routes = [
     { path: 'ListaArte', component: ListaArteComponent},
     { path: 'ListaArteData', component: ListaArteDataComponent},
     { path: 'ListaColecao', component: ListaColecaoComponent},
-    { path: 'Lista de Emprestados', component: ListaEmprestadosComponent}
+    { path: 'ListaEmprestados', component: ListaEmprestadosComponent}
 ]
 
 @NgModule({
