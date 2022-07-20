@@ -17,204 +17,93 @@ export class ListaArteDataComponent implements OnInit {
   public filtrosForm: any
   colunas: string[] = [
     'titulo',
-    'descricao',
-    'nomeArtista',
-    'custo',
-    'periodo',
-    'ano',
-    'cultura',
     'tipo',
+    'custo',
     'estilo',
-    'colecao',
     'dataCompra',
   ];
-  //Variavel utilizada para paginacao
-  paginaAtual = 1
-  //Armazenamento da lista de leiloes
-  arteList: Arte[] = [ {
-    numid: '1',
-    nomeArtista: 'nome artista',
-    periodo: 'periodo',
-    ano: 2000,
-    titulo: 'titulo',
-    descricao: 'descricao',
-    cultura: 'cultura',
-    estilo: 'estilo',
-    custo: 2,
-    tipo: 'objetoArte',
-    colecao: 'colecao',
-    comprado: 1,
-    dataCompra: "10/03/2022",
-    mesCompra: 3,
-    anoCompra: 2022
-  },
-  {numid: '2',
-  nomeArtista: 'nome artista',
-  periodo: 'periodo',
-  ano: 2000,
-  titulo: 'titulo',
-  descricao: 'descricao',
-  cultura: 'cultura',
-  estilo: 'estilo',
-  custo: 2,
-  tipo: 'o2',
-  colecao: 'colecao',
-  comprado: 0,
-  dataCompra: "10/02/2022",
-  mesCompra: 2,
-  anoCompra: 2022
-},
-{numid: '3',
-  nomeArtista: 'nome artista',
-  periodo: 'periodo',
-  ano: 2000,
-  titulo: 'titulo',
-  descricao: 'descricao',
-  cultura: 'cultura',
-  estilo: 'estilo',
-  custo: 3,
-  tipo: 'o2',
-  colecao: 'colecao',
-  comprado: 1,
-  dataCompra: "10/02/2023",
-  mesCompra: 2,
-  anoCompra: 2023
-},
-{numid: '3',
-  nomeArtista: 'nome artista',
-  periodo: 'periodo',
-  ano: 2000,
-  titulo: 'titulo',
-  descricao: 'descricao',
-  cultura: 'cultura',
-  estilo: 'estilo',
-  custo: 5,
-  tipo: 'o2',
-  colecao: 'colecao',
-  comprado: 1,
-  dataCompra: "10/02/2022",
-  mesCompra: 2,
-  anoCompra: 2022
-},
-{numid: '5',
-  nomeArtista: 'nome artista',
-  periodo: 'periodo',
-  ano: 2000,
-  titulo: 'titulo',
-  descricao: 'descricao',
-  cultura: 'cultura',
-  estilo: 'estilo',
-  custo: 6,
-  tipo: 'o2',
-  colecao: 'colecao',
-  comprado: 1,
-  dataCompra: "08/04/2022",
-  mesCompra: 4,
-  anoCompra: 2022
-},]
 
-  arteListFiltrado: Arte[] = []
+  //Armazenamento da lista de leiloes
+  arteList: Arte[] = []
   anos: number[] = []
   
   constructor(private routes: Router, private arteService: ArteService) { }
 
   ngOnInit(): void {
 
+    //anos disponiveis no filtro
     for(let i = 2022; i >=1700; i--)
-    this.anos.push(i)
+      this.anos.push(i)
 
+    //variaveis para filtro de mes e ano
     this.filtrosForm = new FormGroup({
-      tipo: new FormControl(''),
-      classe: new FormControl(''),
       mes: new FormControl(''),
       ano: new FormControl('')
     })  
 
     //Buscando produtos que o usuario podera participar do leilao, passando o token como parametro
-    /*this.arteService.getArtes()
+    this.arteService.getArtesCompradas()
     .subscribe(rst => {
-      //Se houver uma resposta do servidor entao e mapeado todos os dados recebido na constante data
-      const data = rst.data.map((data: any) => ({ 
-        id: data._id,
-        dataFinal: data.dataFinal, 
-        dataInicio: data.dataInicio, 
-        localizacao: data.localizacao, 
-        nome: data.nome, 
-        valorInicial: data.valorInicial,
-        fotoLeilao: environment.FILES+data.urlImagem,
-        usuario: data.usuario,
-        status: data.status
-      }))   
-      //todos os produtos que estao em data sao passados para leilaoList, que renderiza no html
-      this.leilaoList = data
-    })*/
-
-    this.arteList.forEach((e) => {
-      if(!this.tipoArteList.includes(e.tipo))
-        this.tipoArteList.push(e.tipo)      
+      this.populateArteList(rst)
     })
-
-    this.arteListFiltrado = this.arteList
-
-    //preenchendo dados do grafico de gasto
-    let yMesAnoCompra: number[] = []
-    let xMesAnoCompra: string[] = []
-    let arteListOrdenado = this.arteList.sort(function (a, b) {
-      if(a.anoCompra < b.anoCompra)
-        return -1;
-      
-      if(a.anoCompra > b.anoCompra)
-        return 1;
-      else
-        if(a.mesCompra < b.mesCompra)
-          return -1;
-        else
-          return 1;
-    })
-    this.arteList.forEach(a => {
-
-      if(xMesAnoCompra.includes(a.dataCompra.substring(3))) {
-        yMesAnoCompra[xMesAnoCompra.indexOf(a.dataCompra.substring(3))] +=  a.custo
-      }
-      else {
-        yMesAnoCompra.push(a.custo)
-      }
-
-      //se nao houver no array o mes ano do objeto x, armazena no array
-      if(!xMesAnoCompra.includes(a.dataCompra.substring(3)))
-        xMesAnoCompra.push(a.dataCompra.substring(3))
-    })
-    this.dadosGrafico.data = yMesAnoCompra
-    this.dadosGrafico.categories = xMesAnoCompra
-    this.dadosGrafico.name = "Gastos do mês"
   }
 
   filtrar() {
-    this.arteListFiltrado = this.arteList
-    this.filtraTipoArte()
-    this.filtrarClasse()
-    this.filtrarMes()
-    this.filtrarAno()
+    let filter = {year: "", month: ""};
+    if(this.filtrosForm.get('ano').value != "") 
+      filter.year = this.filtrosForm.get('ano').value;
+    if(this.filtrosForm.get('mes').value != "") 
+      filter.month = this.filtrosForm.get('mes').value;
+
+    this.arteService.getArtes(filter)
+            .subscribe(rst => {
+                    this.populateArteList(rst);
+        });
   }
 
-  filtraTipoArte() {
-    if(this.filtrosForm.get('tipo').value != "")
-      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.tipo == this.filtrosForm.get('tipo').value)    
-  }
+  populateArteList(rst: any): void {
+   //Se houver uma resposta do servidor entao e mapeado todos os dados recebido na constante data
+   const data = rst.map((data: any) => ({ 
+    titulo: rst.titulo,
+    tipo: data.tipo,
+    custo: data.custo,
+    estilo: data.estilo,
+    dataCompra: data.dataCompra,
+  }))   
 
-  filtrarClasse() {
-    if(this.filtrosForm.get('classe').value != "")
-      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.comprado == this.filtrosForm.get('classe').value)    
-  }
+  this.arteList = data
 
-  filtrarMes() {
-    if(this.filtrosForm.get('mes').value != "")
-      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.mesCompra == this.filtrosForm.get('mes').value)    
-  }
+  //preenchendo dados do grafico de gasto
+/*  let yMesAnoCompra: number[] = []
+  let xMesAnoCompra: string[] = []
+  let arteListOrdenado = this.arteList.sort(function (a, b) {
+    if(a.anoCompra < b.anoCompra)
+      return -1;
+    
+    if(a.anoCompra > b.anoCompra)
+      return 1;
+    else
+      if(a.mesCompra < b.mesCompra)
+        return -1;
+      else
+        return 1;
+  })
+  this.arteList.forEach(a => {
 
-  filtrarAno() {
-    if(this.filtrosForm.get('ano').value != "")
-      this.arteListFiltrado = this.arteListFiltrado.filter(e => e.anoCompra == this.filtrosForm.get('ano').value)    
+    if(xMesAnoCompra.includes(a.dataCompra.substring(3))) {
+      yMesAnoCompra[xMesAnoCompra.indexOf(a.dataCompra.substring(3))] +=  a.custo
+    }
+    else {
+      yMesAnoCompra.push(a.custo)
+    }
+
+    //se nao houver no array o mes ano do objeto x, armazena no array
+    if(!xMesAnoCompra.includes(a.dataCompra.substring(3)))
+      xMesAnoCompra.push(a.dataCompra.substring(3))
+  })
+  this.dadosGrafico.data = yMesAnoCompra
+  this.dadosGrafico.categories = xMesAnoCompra
+  this.dadosGrafico.name = "Gastos do mês"*/
   }
 
   get tipo() { return this.filtrosForm.get('tipo') }

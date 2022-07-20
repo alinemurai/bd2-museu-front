@@ -47,4 +47,21 @@ export class ArteService {
     //Requisicao GET para o caminho /products, retorna todos os produtos cadastrados
     return this.http.get(url, this.httpOptions)
   }
+
+  //Metodo que recebe todos os produtos cadastrados que estao disponiveis para o usuario participar
+  getArtesCompradas(filter?: any) : Observable<any> {
+    let url = `${this.produtoUrl}art-object/permanent-collection`;
+    if (filter) {
+        if (filter.year) {
+            url += `?year=${filter.year}`;
+        }
+        if (filter.month) {
+            if (filter.year) url += '&';
+            else url += '?';
+            url += `month=${filter.month}`;
+        }
+    }
+  //Requisicao GET para o caminho /products, retorna todos os produtos cadastrados
+  return this.http.get(url, this.httpOptions)
+  }
 }
