@@ -50,7 +50,7 @@ export class ArteService {
 
   //Metodo que recebe todos os produtos cadastrados que estao disponiveis para o usuario participar
   getArtesCompradas(filter?: any) : Observable<any> {
-    let url = `${this.produtoUrl}art-object/permanent-collection`;
+    let url = `${this.produtoUrl}api/art-object/permanent-collection`;
     if (filter) {
         if (filter.year) {
             url += `?year=${filter.year}`;
